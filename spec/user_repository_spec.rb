@@ -17,7 +17,7 @@ describe UserRepository do
 
     users = repo.all
 
-    expect(users.length).to eq '2'
+    expect(users.length).to eq 2
 
     expect(users[0].id).to eq '1'
     expect(users[0].email_address).to eq 'h@b.com'
@@ -29,32 +29,41 @@ describe UserRepository do
 
   end
 
-  xit 'Gets a single user' do
+  it 'Gets a single user' do
 
     repo = UserRepository.new
 
     user = repo.find(1)
 
-    student.id # =>  1
-    student.name # =>  'h@b.com'
-    student.cohort_name # =>  'hl23'
+    expect(user.id).to eq '1'
+    expect(user.email_address).to eq 'h@b.com'
+    expect(user.username).to eq "h123" 
   end
 
-  xit 'creates a user' do
+  it 'creates a user' do
 
     repo = UserRepository.new
 
     new_user = User.new
-    new_user.email_adress = # 'q@w.com'
-    new_user.username = # 'qwerty'
+    new_user.email_address = 'q@w.com'
+    new_user.username = 'qwerty'
 
     repo.create(new_user)
 
     all_users = repo.all
     last_user = all_users.last
-    last_user.id # => 3
-    last_user.email_address # => 'q@w.com'
-    last_user.username #=> 'qwerty'
+    expect(last_user.id).to eq '3'
+    expect(last_user.email_address).to eq 'q@w.com'
+    expect(last_user.username).to eq 'qwerty'
+  end
+
+  it 'deletes user with id 1' do
+    repo = UserRepository.new
+
+    repo.delete(1)
+
+    users = repo.all
+    expect(users.length).to eq 1
   end
 
 end

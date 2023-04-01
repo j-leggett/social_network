@@ -1,5 +1,5 @@
 TRUNCATE TABLE posts RESTART IDENTITY; -- replace with your own table name.
-TRUNCATE TABLE users RESTART IDENTITY;
+TRUNCATE TABLE users RESTART IDENTITY CASCADE;
 
 -- Below this line there should only be `INSERT` statements.
 -- Replace these statements with your own seed data.
